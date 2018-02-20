@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
-import { getPictures } from '../api/pixabay';
+import { getPictures } from '../store/pictures';
 
 export default class Home extends React.Component {
   constructor (props) {
