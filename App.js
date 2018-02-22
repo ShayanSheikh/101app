@@ -1,13 +1,18 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import { Provider } from 'react-redux'
+import store from './store';
 import Home from './components/Home';
 import AllPictures from './components/AllPictures';
+import SinglePicture from './components/SinglePicture';
 
 export default class App extends React.Component {
   render() {
     return (
-      <RootNavigator />
+      <Provider store={store}>
+        <RootNavigator />
+      </Provider>
     );
   }
 }
@@ -15,12 +20,12 @@ export default class App extends React.Component {
 const RootNavigator = StackNavigator({
   Main: {
     screen: Home,
-    navigationOptions: {
-      headerTitle: 'Home',
-    },
   },
   AllPictures: {
     screen: AllPictures,
+  },
+  SinglePicture: {
+    screen: SinglePicture
   }
 });
 

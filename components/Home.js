@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
-import { getPictures } from '../store/pictures';
+import { fetchPictures } from '../store';
+import { connect } from 'react-redux';
 
-export default class Home extends React.Component {
+class Home extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -11,6 +12,7 @@ export default class Home extends React.Component {
   }
 
   render() {
+    const { navigation, loadPictures } = this.props; 
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Search Pixabay!</Text>
@@ -20,15 +22,15 @@ export default class Home extends React.Component {
           placeholder="Search"
           onChangeText={(text) => this.setState({ text })}
           onSubmitEditing={() => {
-              getPictures(this.state.text)
-              this.props.navigation.navigate('AllPictures');
+              loadPictures(this.state.text)
+              navigation.navigate('AllPictures');
             }
           }
         />
       </View>
     )
   }
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -42,3 +44,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   }
 });
+
+const mapDispatch = (dispatch) => {
+  return {
+    loadPictures: (query) => dispatch(fetchPictures(query, 1))
+  }
+}
+
+export default connect(null, mapDispatch)(Home);

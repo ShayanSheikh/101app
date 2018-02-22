@@ -1,5 +1,5 @@
 {
-  "name": "planet-emoji2",
+  "name": "101app",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -25,6 +25,7 @@
     "react-native": "^0.52.0",
     "react-navigation": "^1.1.1",
     "react-redux": "^5.0.7",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
   }
 }
