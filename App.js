@@ -3,9 +3,7 @@ import { StyleSheet } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux'
 import store from './store';
-import Home from './components/Home';
-import AllPictures from './components/AllPictures';
-import SinglePicture from './components/SinglePicture';
+import { Home, AllPictures, SinglePicture } from './components';
 
 export default class App extends React.Component {
   render() {
