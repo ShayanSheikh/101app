@@ -12,7 +12,7 @@ const SinglePicture = (props) => {
         />
         <Text> Tags: {pic.tags}</Text>
         <Text> User: {pic.user}</Text>
-        <Text> Likes: {pic.likes}</Text>
+        <Text> Resolution: {pic.webformatWidth} x {pic.webformatHeight}</Text>
       </View>
     )
 }
