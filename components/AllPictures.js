@@ -1,16 +1,32 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList, Image, TouchableHighlight } from 'react-native';
+import { StyleSheet, View, Text, FlatList, Image, TouchableHighlight, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
-import { setPic, setPage, fetchMorePictures } from '../store';
+import { setPic, fetchMorePictures } from '../store';
 
 class AllPictures extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: 1
+      page: 1,
+      numColumns: 2
     }
     this.handleLoadMore = this.handleLoadMore.bind(this);
+    this.dimHandler = this.dimHandler.bind(this);
   }
+
+  dimHandler(dims) {
+    const { width, height } = dims;
+    this.setState({ numColumns: (width < height) ? 2 : 5 })
+  }
+
+  componentWillMount() {
+    Dimensions.addEventListener('change', this.dimHandler);
+  }
+
+  componentWillUnmount() {
+    Dimensions.removeEventListener('change', this.dimHandler);
+  }
+
 
   handleLoadMore() {
     if (this.state.page >= 25) return;
@@ -42,10 +58,11 @@ class AllPictures extends React.Component {
               </TouchableHighlight>
               )
             }}
+            key={(this.state.numColumns)}
             keyExtractor={item => item.id}
-            onEndThreshold={0}
+            onEndReachedThreshold={0.5}
             onEndReached={this.handleLoadMore}
-            numColumns={2}
+            numColumns={this.state.numColumns}
           />
         </View>
       )
