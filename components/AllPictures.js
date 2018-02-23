@@ -20,6 +20,8 @@ class AllPictures extends React.Component {
   }
 
   componentWillMount() {
+    //listen for orientation changes and use them to set the numColumns for the FlatList
+    //Currently only works once and does force a rerender
     Dimensions.addEventListener('change', this.dimHandler);
   }
 
@@ -27,8 +29,9 @@ class AllPictures extends React.Component {
     Dimensions.removeEventListener('change', this.dimHandler);
   }
 
-
   handleLoadMore() {
+    //infinite scroll handler, hard capped at 25 pages since pixabay only returns 500 hits for any query
+    //20 hits a page
     if (this.state.page >= 25) return;
     this.setState({
       page: this.state.page + 1

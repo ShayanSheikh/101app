@@ -6,6 +6,8 @@ const GET_MORE_PICTURES = 'GET_MORE_PICTURES';
 const initialGetPictures = pictures => ({ type: INITIAL_GET_PICTURES, pictures });
 const getMorePictures = pictures => ({ type: GET_MORE_PICTURES, pictures });
 
+//The reason for having two thunks is to make sure the store gets reset if the user backs out to the home page and enters a new query
+//or searches again using the same query
 export function initialFetchPictures(query) {
   query = query.toLowerCase().split(' ').join('+');
   return (dispatch) => {
