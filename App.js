@@ -1,5 +1,4 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux'
 import store from './store';
@@ -25,13 +24,4 @@ const RootNavigator = StackNavigator({
   SinglePicture: {
     screen: SinglePicture
   }
-});
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
 });

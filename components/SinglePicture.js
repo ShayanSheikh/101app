@@ -10,25 +10,26 @@ const SinglePicture = (props) => {
           style={styles.image}
           source={{ uri: pic.previewURL }}
         />
+        <Text> Tags: {pic.tags}</Text>
+        <Text> User: {pic.user}</Text>
+        <Text> Likes: {pic.likes}</Text>
       </View>
     )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-around'
-  },
   image: {
-    height: 150,
-    width: 150
+    width: '100%',
+    height: '50%'
+  },
+  container: {
+    alignItems: 'center',
   }
 });
 
 const mapState = (state) => {
   return {
-    pic: state.currPic.pic
+    pic: state.utils.pic
   }
 }
 
